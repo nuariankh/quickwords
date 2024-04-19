@@ -6,7 +6,7 @@ import { DefaultTheme } from "react-native-paper";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons';
+import Icon from 'react-native-paper';
 import RandomWordScreen from './screens/RandomWordScreen';
 
 const appTheme = {
@@ -30,10 +30,8 @@ const TabNavigator = () => {
         <Tab.Screen 
             name='Home' 
             component={HomeScreen} 
-            screenOptions={{
-                tabBarIcon: ({ color }) => (
-                    <Icon name='book-open-page-varient-outline' size={24} color='#FFCC00' />
-                )
+            optionsptions={{
+                tabBarIcon: 'book'
             }}
             >
 
@@ -45,44 +43,22 @@ export default function App() {
     return (
         <NavigationContainer>
             <PaperProvider theme={appTheme}>
-                <Stack.Navigator
-                    screenOptions={{
-                        headerStyle: {
-                            backgroundColor: '#FFCC00',
-                        },
-                        headerTintColor: '#000',
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            fontSize: 30,
-                        }
-                    }}
-                >
-                    <Stack.Screen 
-                    name='QuickWords'
-                    component={Home}
-                    />
-                    <Stack.Screen 
-                        name='Random Word'
-                        component={RandomWordScreen}    
-                    />
-                </Stack.Navigator>
-
                 <Tab.Navigator
                     initialRouteName={HomeScreen}
                     activeColor="#FFCC00"
                     barStyle={{ backgroundColor: '#fff' }}
                 >
                     <Tab.Screen 
-                        name='Home' 
+                        name='Word Search' 
                         component={HomeScreen}
-                        screenOptions={{
-                        tabBarIcon: ({ color }) => (
-                            <Icon name='book-open-page-varient-outline' size={24} color='#FFCC00' />
-                            )
+                        options={{
+                            tabBarIcon: ({ color }) => (
+                                <Icon name='book' type='FontAwesome' size={24} color={color} />
+                                )
                         }}
                     />
                     <Tab.Screen 
-                        name='Random Word' 
+                        name='random' 
                         component={RandomWordScreen} 
                         screenOptions={{
                         tabBarIcon: ({ color }) => (
