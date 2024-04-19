@@ -6,7 +6,7 @@ import { DefaultTheme } from "react-native-paper";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import RandomWordScreen from './screens/RandomWordScreen';
 
 const appTheme = {
@@ -21,22 +21,20 @@ const appTheme = {
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
-    <Tab.Navigator
-        initialRouteName={HomeScreen}
-        activeColor="#FFCC00"
-        barStyle={{ backgroundColor: '#fff' }}
-    >
-        <Tab.Screen 
-            name='Home' 
-            component={HomeScreen} 
-            optionsptions={{
-                tabBarIcon: 'book'
-            }}
-            >
-
-        </Tab.Screen>
-    </Tab.Navigator>
+const screenOptions = {
+    tabBarShowLabel: true,
+    headerShown: true,
+    tabBarActiveTintColor: "#FFCC00",
+    tabBarInactiveTintColor: "#6C757D",
+    tabBarStyle: {
+        position: 'absolute',
+        borderColor: '#6C757D',
+        borderTopWidth: 1,
+    },
+    headerStyle: {
+        backgroundColor: '#FFCC00',
+        height: 100
+    }
 }
 
 export default function App() {
@@ -46,7 +44,7 @@ export default function App() {
                 <Tab.Navigator
                     initialRouteName={HomeScreen}
                     activeColor="#FFCC00"
-                    barStyle={{ backgroundColor: '#fff' }}
+                    screenOptions={screenOptions}
                 >
                     <Tab.Screen 
                         name='Word Search' 
@@ -58,11 +56,11 @@ export default function App() {
                         }}
                     />
                     <Tab.Screen 
-                        name='random' 
+                        name='Random Word' 
                         component={RandomWordScreen} 
-                        screenOptions={{
+                        options={{
                         tabBarIcon: ({ color }) => (
-                            <Icon name='book-open-page-varient-outline' size={24} color='#FFCC00' />
+                            <Icon name='random' type='FontAwesome' size={24} color={color} />
                             )
                         }}
                     />

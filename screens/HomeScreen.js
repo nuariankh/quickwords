@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native'
 import { useTheme, TextInput, Text, Button, Card } from "react-native-paper";
 import { styles } from '../styles/styles';
+import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 
 const HomeScreen = () => {
     const theme = useTheme();
@@ -28,7 +29,7 @@ const HomeScreen = () => {
     return (
         <View
             style={styles.container}>
-            <Text variant='headlineLarge' theme={theme} style={{color: theme.colors.primary}}>Words at your fingertips.</Text>
+            <Text variant='headlineLarge' theme={theme} style={{color: theme.colors.primary, fontWeight: 'bold'}}>Words at your fingertips.</Text>
             <TextInput
                 label='Search'
                 value={wordSearchText}
@@ -39,20 +40,16 @@ const HomeScreen = () => {
                     width: '75%'
                 }}
                 />
-                <Button mode='contained' style={{ 
-                    backgroundColor: theme.colors.tertiary, 
-                    color: '#ffffff', 
-                    margin: 10
-                    }}
+                <Button mode='contained' style={styles.primaryButton}
                     onPress={() => submitSearch(wordSearchText)}
                 >
                     Search.
                 </Button>
-                <ScrollView>
+                <ScrollView overScrollMode='never'>
                     {searchedWords.map((wordData, index) => {
                         return (
                             <View style={styles.wordCard} key={index}>
-                                <Text style={styles.dictionaryHeading}>{wordData.word}</Text> 
+                                <Text style={styles.dictionaryHeading}>{capitalizeFirstLetter(wordData.word)}</Text> 
                                 {wordData.meanings.map((meaning, mIndex) => {
                                     return (
                                         <View key={mIndex}>
