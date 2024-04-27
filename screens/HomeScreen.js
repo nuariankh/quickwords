@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { View, ScrollView, StyleSheet, Alert } from 'react-native'
 import { useTheme, TextInput, Text, Button, Card } from "react-native-paper";
 import { styles } from '../styles/styles';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
     const theme = useTheme();
     const [wordSearchText, setWordSearchText] = useState('');
     const [searchedWords, setSearchedWords] = useState([]);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
 
 
     const submitSearch = async (word) => {
@@ -18,13 +18,30 @@ const HomeScreen = () => {
                 throw new Error('Failed to fetch data');
             }
             const data = await response.json();
+
+            console.log('data: ' + data.word);
             setSearchedWords(data);
             console.log(searchedWords);
 
         } catch (error) {
             setError(error);
+            Alert.alert(
+                'Oh no...',
+                `${error}`,
+                [
+                    { text: 'OK'}
+                ],
+                { cancelable: false }
+            );
         }
     }
+
+    useEffect(() => {
+        if (route.params) {
+            console.log(route.params.randomWord);
+            submitSearch(route.params.randomWord);
+        }
+    }, [route.params])
 
     return (
         <View

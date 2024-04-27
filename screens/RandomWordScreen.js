@@ -3,9 +3,13 @@ import { View } from 'react-native';
 import { styles } from '../styles/styles';
 import { useState } from 'react';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
+import HomeScreen from './HomeScreen';
+import { useNavigation } from '@react-navigation/native';
 
 
 const RandomWordScreen = () => {
+
+    const navigation = useNavigation();
 
     const [randomWord, setRandomWord] = useState(null);
     const [error, setError] = useState(null);
@@ -17,11 +21,14 @@ const RandomWordScreen = () => {
                 throw new Error('Failed to fetch data');
             }
             const data = await response.json();
-            console.log(data);
             setRandomWord(data);
         } catch (error) {
             setError(error);
         }
+    }
+
+    const navigateToWordSearch = (word) => {
+        navigation.navigate('Word Search', {randomWord: word});
     }
     
     return (
@@ -37,7 +44,14 @@ const RandomWordScreen = () => {
             {
                 randomWord && 
                 <View>
-                    <Text variant='displayMedium' style={{color: '#800020', fontWeight: 'bold'}}>{capitalizeFirstLetter(randomWord[0])}</Text>
+                    <Text 
+                        variant='displayMedium' 
+                        style={{color: '#800020', fontWeight: 'bold'}}
+                        onPress={() => navigateToWordSearch(randomWord[0])}
+                    >
+                    
+                        {capitalizeFirstLetter(randomWord[0])}
+                    </Text>
                 </View>
             }
         </View>
