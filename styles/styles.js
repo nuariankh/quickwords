@@ -33,6 +33,11 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'light'
     },
+    plainText: {
+        color: 'black',
+        fontSize: 11,
+        textAlign: 'center'
+    },
     primaryButton: {
         margin: 10,
         backgroundColor: '#FFCC00'

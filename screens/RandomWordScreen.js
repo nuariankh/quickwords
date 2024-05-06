@@ -52,6 +52,7 @@ const RandomWordScreen = () => {
                     
                         {capitalizeFirstLetter(randomWord[0])}
                     </Text>
+                    <Text style={styles.plainText}>Tap to search for this word</Text>
                 </View>
             }
         </View>

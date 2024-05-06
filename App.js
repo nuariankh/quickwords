@@ -47,7 +47,7 @@ export default function App() {
                     screenOptions={screenOptions}
                 >
                     <Tab.Screen 
-                        name='QuickWords' 
+                        name='Word Search' 
                         component={WordSearchScreen}
                         options={{
                             tabBarIcon: ({ color }) => (
