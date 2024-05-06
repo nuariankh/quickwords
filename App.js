@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import HomeScreen from './screens/HomeScreen';
+import WordSearchScreen from './screens/WordSearchScreen';
 import { DefaultTheme } from "react-native-paper";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -42,13 +42,13 @@ export default function App() {
         <NavigationContainer>
             <PaperProvider theme={appTheme}>
                 <Tab.Navigator
-                    initialRouteName={HomeScreen}
+                    initialRouteName={WordSearchScreen}
                     activeColor="#FFCC00"
                     screenOptions={screenOptions}
                 >
                     <Tab.Screen 
-                        name='Word Search' 
-                        component={HomeScreen}
+                        name='QuickWords' 
+                        component={WordSearchScreen}
                         options={{
                             tabBarIcon: ({ color }) => (
                                 <Icon name='book' type='FontAwesome' size={24} color={color} />

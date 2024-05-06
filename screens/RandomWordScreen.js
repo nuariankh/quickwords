@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { styles } from '../styles/styles';
 import { useState } from 'react';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
-import HomeScreen from './HomeScreen';
+import WordSearchScreen from './WordSearchScreen';
 import { useNavigation } from '@react-navigation/native';
 
 

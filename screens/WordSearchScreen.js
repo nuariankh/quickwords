@@ -4,7 +4,7 @@ import { useTheme, TextInput, Text, Button, Card } from "react-native-paper";
 import { styles } from '../styles/styles';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 
-const HomeScreen = ({ route }) => {
+const WordSearchScreen = ({ route }) => {
     const theme = useTheme();
     const [wordSearchText, setWordSearchText] = useState('');
     const [searchedWords, setSearchedWords] = useState([]);
@@ -40,6 +40,7 @@ const HomeScreen = ({ route }) => {
         if (route.params) {
             console.log(route.params.randomWord);
             submitSearch(route.params.randomWord);
+            setWordSearchText(route.params.randomWord);
         }
     }, [route.params])
 
@@ -88,4 +89,4 @@ const HomeScreen = ({ route }) => {
 };
 
 
-export default HomeScreen;
+export default WordSearchScreen;
